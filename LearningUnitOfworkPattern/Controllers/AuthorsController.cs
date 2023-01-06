@@ -10,10 +10,10 @@ namespace LearningUnitOfworkPattern.Controllers
     [ApiController]
     public class AuthorsController : ControllerBase
     {
-        private readonly IUnitOfWork _unitOfWork      
-        public AuthorsController (IUnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public AuthorsController(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork
+            _unitOfWork = unitOfWork;
                 }
         [HttpGet]
         public IActionResult GetByID()
@@ -33,7 +33,9 @@ namespace LearningUnitOfworkPattern.Controllers
         [HttpPost("Add")]
         public IActionResult Add (Author baha  )
         {
-            return Ok(_unitOfWork.Authors.Add(baha));   
+            _unitOfWork.Authors.Add(baha);   
+            _unitOfWork.complete(); 
+            return Ok();    
         }
     }
 }

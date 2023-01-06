@@ -11,7 +11,7 @@ namespace LearningUnitOfworkPattern.core
     public interface IUnitOfWork : IDisposable
     {
         IBaseRepository<Author> Authors { get; }    
-        IBaseRepository<Book> Books { get; }
+       IBookRepository Books { get; }
         int complete(); 
     }
 }
